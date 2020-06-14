@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>kodemo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script>
+      window.location.href = 'http://www.baidu.com'
+    </script> -->
+</head>
+<body>
+  <h3>数组对象循环</h3>
+    <div data-bind="foreach:goodsData">
+      <div data-bind="if:isShow">111</div>
+      <div data-bind="text:orderId"></div>
+      <div data-bind="text:goodsName"></div>
+      <div data-bind="text:goodsPrice"></div>
+      <hr>
+    </div><br>
+    <h3>单数组循环</h3>
+    <div data-bind="foreach:arrayData">
+      <div>死数据：<span data-bind="text:$data"></span></div>
+    </div>
+    <hr>
+    <h3>操作</h3>
+    <button class="addArrData">增</button>
+    <button class="delectArrData">删</button>
+    <button class="updateArrData">改</button>
+    <h3>事件触发</h3>
+    <button data-bind="click:clickFn('点击事件传进来的数据')">点击事件</button>
+    <button data-bind="event: { mouseover: enableDetails('移入事件')}">移入事件</button>
+    <button data-bind="event: { mouseout: disableDetails('移出事件') }">移出事件</button>
+    <h3>表单</h3>
+    <input type="text" data-bind="value:data">
+    <textarea name=""  data-bind="value:data" id="" cols="30" rows="10"></textarea>
+    <input type="checkbox" checked="false">111
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+
+  <script>
+    $(function(){
+        let obj = { 
+          goodsData : ko.observableArray([
+            {
+              orderId:"464645645646464",
+              goodsName:'商品一号',
+              goodsPrice:'111元',
+              isShow:ko.observable(false)
+            },
+            {
+              orderId:"3213213213213213",
+              goodsName:'商品二号',
+              goodsPrice:'222元',
+              isShow:ko.observable(false)
+            },
+            {
+              orderId:"4233123413432412",
+              goodsName:'商品三号',
+              goodsPrice:'333元',
+              isShow:ko.observable(false)
+            },
+          ]),
+          data:'数据',
+          arrayData:['Jan', 'Feb', 'Mar', 'etc'],
+          clickFn:function(data){
+            console.log('数据点击',data);
+          },
+          enableDetails:function(data){
+            console.log(data,'1');
+          },
+          disableDetails:function(data){
+            console.log(data,'2');
+          },
+        }
+      ko.applyBindings(obj);  //applyBindings触发
+
+      $('.addArrData').click(function(){ //数组增加数据
+        obj.goodsData.push({
+          orderId:"464645645646464",
+          goodsName:'商品一号',
+          goodsPrice:'111',
+          isShow:ko.observable(false)
+        })
+      });
+      $('.delectArrData').click(function(){ //数组删除数据
+        obj.goodsData.pop({
+          orderId:"464645645646464",
+          goodsName:'商品一号',
+          goodsPrice:'111',
+          isShow:ko.observable(false)
+        })
+      });
+      $('.updateArrData').click(function(){ //数组修改数据
+        obj.goodsData().forEach(item => {
+          item.isShow(true);
+        });
+      });
+
+    })
+  </script>
+
+</html>

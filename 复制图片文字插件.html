@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<style>
+/* html,body{
+ user-select: none;
+ -moz-user-select: none;
+ -webkit-user-select: none;
+ -webkit-touch-callout: none;
+ -webkit-text-size-adjust: none;
+ -webkit-tap-highlight-color: transparent;
+ -webkit-user-select: none;
+} */
+
+
+
+</style>
+<body>
+    <!-- 图片不能太大 http模式 -->
+    <div>
+    <div  class="wechat-copy-main" style="display:none">
+            【西陵区·港窑路】多倍快乐尽享这顿下午茶~￥49.9抢门市价181芝芝底9寸披萨7选1+意面6选1+小吃4选1+饮料5选2~
+            原价：899.9元
+            内购价：399元
+            入口：http://bm8.tv/VB8TCV1iv0
+            -----------------------------------
+            【西陵区·港窑路】多倍快乐尽享这顿下午茶~￥49.9抢门市价181芝芝底9寸披萨7选1+意面6选1+小吃4选1+饮料5选2~
+            原价：899.9元
+            内购价：399元
+            入口：http://bm8.tv/VB8TCV1iv0
+            -----------------------------------
+            【西陵区·港窑路】多倍快乐尽享这顿下午茶~￥49.9抢门市价181芝芝底9寸披萨7选1+意面6选1+小吃4选1+饮料5选2~
+            原价：899.9元
+            内购价：399元
+            入口：http://bm8.tv/VB8TCV1iv0
+
+        <img class='' src='file:///C:/Users/47937/Desktop/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E6%8E%A8%E9%80%81%E4%BA%A7%E5%93%81-%E8%BF%90%E8%90%A5%E5%B7%A5%E5%85%B7/images/%E8%BF%90%E8%90%A5%E7%AB%AF2_0/u369.jpg' style='width:50px;'><br/>
+        <img class='' src='file:///C:/Users/47937/Desktop/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E6%8E%A8%E9%80%81%E4%BA%A7%E5%93%81-%E8%BF%90%E8%90%A5%E5%B7%A5%E5%85%B7/images/%E8%BF%90%E8%90%A5%E7%AB%AF2_0/u369.jpg' style='width:50px;'><br/>
+        <img class='' src='file:///C:/Users/47937/Desktop/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E6%8E%A8%E9%80%81%E4%BA%A7%E5%93%81-%E8%BF%90%E8%90%A5%E5%B7%A5%E5%85%B7/images/%E8%BF%90%E8%90%A5%E7%AB%AF2_0/u369.jpg' style='width:50px;'><br/>
+        
+    </div>
+    <span class="wechat-copy">
+       <button style="color:#FFFFFF;background-color: #263740">复制</button>
+    </span>
+    </div>
+
+    <div>
+        <div class="wechat-copy-main" style="display:none">
+                111111111111111111111111111111111111
+                -----------------------------------
+                222222222222222222222222222222222222
+                -----------------------------------
+                33333333333333333333333333333333333
+            <img class='' src='file:///C:/Users/47937/Desktop/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E6%8E%A8%E9%80%81%E4%BA%A7%E5%93%81-%E8%BF%90%E8%90%A5%E5%B7%A5%E5%85%B7/images/%E8%BF%90%E8%90%A5%E7%AB%AF2_0/u369.jpg' style='width:50px;'><br/>
+            <img class='' src='file:///C:/Users/47937/Desktop/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E6%8E%A8%E9%80%81%E4%BA%A7%E5%93%81-%E8%BF%90%E8%90%A5%E5%B7%A5%E5%85%B7/images/%E8%BF%90%E8%90%A5%E7%AB%AF2_0/u369.jpg' style='width:50px;'><br/>
+            <img class='' src='file:///C:/Users/47937/Desktop/%E5%BE%AE%E4%BF%A1%E7%BE%A4%E6%8E%A8%E9%80%81%E4%BA%A7%E5%93%81-%E8%BF%90%E8%90%A5%E5%B7%A5%E5%85%B7/images/%E8%BF%90%E8%90%A5%E7%AB%AF2_0/u369.jpg' style='width:50px;'><br/>
+            
+        </div>
+        <span class="wechat-copy">
+            <button style="color:#FFFFFF;background-color: #263740">复制</button>
+        </span>
+    </div>  
+</body>
+
+<script type="text/javascript">
+
+    setTimeout(()=>{
+        var node = document.querySelectorAll(".wechat-copy-main");
+        for(let i=0; i<node.length; i++){
+            node[i].style.display = 'block';
+        }
+        alert('已打开')
+    },5000)
+    var Clipboard = new ClipboardJS(".wechat-copy", {
+    target: function (trigger) { 
+        var copyNode = trigger.parentNode.querySelector(".wechat-copy-main");
+        return copyNode
+    }
+    });
+    Clipboard.on("success", function (res) {
+        console.log('文案复制成功！');
+        console.log(res)
+        res.clearSelection()
+    }),
+    Clipboard.on("error", function (res) {
+        console.log('复制失败');
+        res.clearSelection()
+    })
+</script>
+</html>

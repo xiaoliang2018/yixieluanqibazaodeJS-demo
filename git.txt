@@ -1,0 +1,56 @@
+cmd
+where git 查询git安装的路径
+
+
+
+git
+汉化
+其实Git GUI本身是真的没有这个语言设置选项的，所幸的是网上已有网友针对其开发出了对应的汉化包，我们只需要下载安装即可，具体可见   https://github.com/stayor/git-gui-zh。
+
+下载下来之后，将其放到/mingw64/share/git-gui/lib/msgs/zh_cn.msg，有可能Git的安装路径下面没有msgs这个文件夹，那么需要自己创建之后再将这个汉化包来放进去。这样就算是汉化完了。
+————————————————
+版权声明：本文为CSDN博主「我真的爱发明」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u014723479/java/article/details/102869727
+www.github.com ->sign in 
+ 
+username 479379860@qq.com
+password aa13531196480
+
+git clone git@github.com:xiaoliang2018/git.git  //拉去github内容
+
+拉东西下来记得先提交后合并
+ 
+git config --global user.name '小亮'
+git config --global user.email "479379860@qq.com"
+git add . //写入草稿
+git commit -m '提交备注' //提交
+git status //查询仓库状态
+git diff //查看不同点
+git log //日志
+git reset --hard HEAD^
+git relog //全部日志 通过标识符可以用reset 到所有版本
+git reset --hard 标识码
+git branch  查看分支
+git branch  'name' 创建分支
+git checkout 'name' 切换分支
+git rm -r --cached . 删除本地缓存
+vscode 安装terminal  用于跟踪git
+
+
+
+
+git remote 查看当前数据库
+
+git安装包url
+https://git-scm.com/download/win
+
+github
+生成密钥
+ssh-keygen -t rsa -C "479379860@qq.com"
+放到github的  头像 -> settings ->ssh and GPG keys
+
+git remote add origin git@github.com:xiaoliang2018/git.git  //链接github
+git push -u '线上链接数据分支' '本地分支名'  //上传
+git pull  '线上链接数据分支' '本地分支名'
+git fetch  '线上链接数据分支' '本地分支名'
+

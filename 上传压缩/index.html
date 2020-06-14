@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+/* .fileInput{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    clear: both;
+    display: block;
+    margin: auto;
+    background-color: red;
+} */
+    </style>
+</head>
+<body>
+    <div class="aui-info">
+        <img src="imgs/txbk.png" id="img-txz" style="width: 3rem;height: 3rem" class="aui-img-round user-img"/>
+        <input type="file" accept="image/*" id="file-txz" name="file" onchange="upload('#file-txz', '#img-txz');"  class="fileInput"  value="" />
+    </div>
+</body>
+<script src="js/compressor.js"></script>
+<script>
+
+    var upload = function (c, d) {
+    "use strict";
+    var $c = document.querySelector(c),
+        $d = document.querySelector(d),
+        file = $c.files[0];
+        if (!file) {
+            return;
+        }
+        console.log(file)
+    new Compressor(file, {
+        quality: 0.6,
+        maxWidth:300,
+        maxHeight:300,
+        success(result) {
+            var formData = new FormData();
+            formData.append('upload', result);
+            console.log(formData.get('upload'))
+            // blog=result;
+            var reader = new FileReader();
+
+            reader.readAsDataURL(result);
+            reader.onload = function (e) {
+                $d.setAttribute("src", e.target.result);
+            };
+        },
+        error(err) {
+            console.log(err.message);
+        },
+    });
+};
+// 参数详解
+// - strict: true, 严格的语法模式
+// - checkOrientation: true, 检查图片的方向
+// - quality: 0.8, 默认压缩质量
+// - maxWidth:300, maxHeight:300, 我觉得头像没必要超过300px
+// - convertSize: 5000000, png图片如果超过了这个数值，被转换成JPEGs。
+</script>
+</html>

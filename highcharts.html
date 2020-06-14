@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=yes"/>
+    <title>Highcharts 漏斗</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    ul{
+      display:flex;
+      
+    }
+    li{
+      list-style-type: none;
+      text-align: center;
+      font-size: 12px;
+      flex: 1;
+    }
+</style>
+<body>
+    <!-- highcharts漏斗图没legend 所以自己做然后在重新渲染 -->
+    <ul>
+        <li class="toggleTag" data-isshow='true'>访问网站</li>
+        <li class="toggleTag" data-isshow='true'>下载产品</li>
+        <li class="toggleTag" data-isshow='true'>询价</li>
+        <li class="toggleTag" data-isshow='true'>发送合同</li>
+        <li class="toggleTag" data-isshow='true'>成交</li>
+    </ul>
+
+    <!-- 图表容器 DOM -->
+    <div id="container" style="width: 100%;height:200px;"></div>
+    <!-- 引入 highcharts.js -->
+    <script src="http://code.highcharts.com.cn/highcharts/8.1.0/highcharts.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts/modules/funnel.js"></script>
+    <script>
+      window.onload = function(){
+        var toggleTag = document.querySelectorAll('.toggleTag');
+        for(let i=0; i<toggleTag.length; i++){
+          toggleTag[i].onclick = function(){
+              var arrData = [
+                ['访问网站',5654],
+                ['下载产品', 4064],
+                ['询价', 1987],
+                ['发送合同',976],
+                ['成交',846]
+              ];
+              if(toggleTag[i].dataset.isshow == 'true'){
+                  arrData.splice(i,1);
+                  toggleTag[i].dataset.isshow = 'false';
+              }else{
+                  toggleTag[i].dataset.isshow = 'true';
+              }
+              highChartsFn(arrData);
+          }
+        }
+      }
+        var arrData = [
+          ['访问网站',5654],
+          ['下载产品', 4064],
+          ['询价', 1987],
+          ['发送合同',976],
+          ['成交',846]
+        ]
+        highChartsFn(arrData);
+        function highChartsFn(arrData){
+            // 图表配置
+            var options = {
+                chart: {
+                    type: 'funnel',
+                    marginRight: 100
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: '',
+                    x: -50
+                },
+                tooltip: {
+                    borderColor: '#000000',
+                    backgroundColor: "#000",
+                    style:{ "color": "#fff", "cursor": "default", "fontSize": "12px", "pointerEvents": "none", "whiteSpace": "nowrap" }
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            crop : false,
+                            overflow: 'none',
+                            format: '<b>{point.name}</b> ({point.y})',
+                            color: 'black',
+                            // softConnector: true
+                        },
+                        states:{
+                            hover:{
+                                enabled: false,
+                            }
+                        },
+                        neckWidth: '0%',
+                        neckHeight: '0%'
+                    },
+                    funnel:{
+                        states: {
+                            inactive: {
+                                opacity: 1
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    // enabled: false
+                },
+                series: [{
+                    name: '用户',
+                    data: arrData
+                }]
+            }
+            // 图表初始化函数
+            Highcharts.chart('container', options);
+        }
+    </script>
+</body>
+</html>
